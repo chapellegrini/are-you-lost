@@ -1,4 +1,6 @@
 from user import User
+import random
+
 class Database:
     """The user class, carry bandages"""
     # Initializer / Instance attributes
@@ -10,12 +12,12 @@ class Database:
         return self.users[uid]
 
     def addUser(self, name):
-        randint=random.randint(0,1000000);
-        while randint in users.keys:
-            randint=random.randint(0,1000000);
-        user = User(randint,name)
-        self.users[randint]=user;
-        return randint
+        rnd = random.randint(0,1000000);
+        while rnd in self.users.keys():
+            rnd = randint(0,1000000);
+        user = User(rnd, name)
+        self.users[rnd] = user;
+        return rnd
 
     def getUsersByItem(self, item):
         res = []

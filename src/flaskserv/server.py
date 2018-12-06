@@ -3,6 +3,7 @@
 from flask import Flask
 from user import User
 from database import Database
+from flask import request
 
 import json
 
@@ -16,6 +17,7 @@ def index():
 
 def getUserInfo(userid):
     return {
+        'name': db.users[userid].name,
         'position': {
             'lattitude': db.users[userid].lattitude,
             'longitude': db.users[userid].longitude
@@ -23,10 +25,9 @@ def getUserInfo(userid):
         'inventory': db.users[userid].inventory
     }
 
-@app.route('/user/<user>')
-def userInfo(user):
-    userid = int(user)
-    if userid < len(db.users):
+@app.route('/user/<userid>')
+def userInfo(userid):
+    if userid in db.users.keys():
         userDict = getUserInfo(userid)
         return json.dumps(userDict, indent=2)
     else:
@@ -34,11 +35,15 @@ def userInfo(user):
 
 @app.route('/users/')
 def listUsers():
-    usersDict = dict()
-    for userid in range(len(db.users)):
-        usersDict[userid] = getUserInfo(userid)
-    return json.dumps(usersDict, indent=2)
+    usersList = list()
+    i = 0
+    for userid in db.users.keys():
+        usersList.append(getUserInfo(userid))
+    return json.dumps(usersList, indent=2)
 
 @app.route('/register/<name>')
 def register(name):
     return str(db.addUser(name))
+
+#@app.route('/additem/', methods = ['POST'])
+#def addItem(item, number):
