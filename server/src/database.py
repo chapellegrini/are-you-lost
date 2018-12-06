@@ -4,15 +4,16 @@ class Database:
     # Initializer / Instance attributes
     cpt=0
     def __init__(self):
-        self.users = [] 
+        self.users = []
 
     def getUser(self, userNum):
         return users[usersNum]
-    
+
     def addUser(self, name):
-        user= User(cpt,name) 
+        user= User(cpt,name)
         cpt=cpt+1
         users.append(user)
+        return cpt
 
     def getUsersByItem(self, item):
         res=[]
@@ -20,4 +21,3 @@ class Database:
             if user.have(item):
                 res.append(user)
         return res
-
