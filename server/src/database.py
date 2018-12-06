@@ -2,22 +2,23 @@ from user import User
 class Database:
     """The user class, carry bandages"""
     # Initializer / Instance attributes
-    cpt=0
+
+    cpt = 0
     def __init__(self):
         self.users = []
 
     def getUser(self, userNum):
-        return users[usersNum]
+        return self.users[usersNum]
 
     def addUser(self, name):
-        user= User(cpt,name)
-        cpt=cpt+1
-        users.append(user)
-        return cpt
+        user = User(Database.cpt,name)
+        Database.cpt += 1
+        self.users.append(user)
+        return Database.cpt - 1
 
     def getUsersByItem(self, item):
-        res=[]
-        for user in users:
+        res = []
+        for user in self.users:
             if user.have(item):
                 res.append(user)
         return res

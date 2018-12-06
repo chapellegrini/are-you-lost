@@ -4,20 +4,18 @@ class User:
     def __init__(self, uid, name):
         self.uid = uid
         self.name = name
-        self.lattitude=None
-        self.longitude=None
+        self.lattitude = None
+        self.longitude = None
         self.inventory = []
 
-
     def setCoordinate(self, lat, longi):
-        lattitude=lat
-        longitude=longi
-
+        self.lattitude = lat
+        self.longitude = longi
 
     def addItem(self, item):
-        inventory.append(item)
+        self.inventory.append(item)
 
     def have(self, item):
-        if item in inventory:
+        if item in self.inventory:
             return true
         return false
