@@ -6,3 +6,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8100:8100
+    networks:
+      - lostnet
+  flaskserv:
+    build:
+      context: src/flaskserv/
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    networks:
+      - lostnet
+
+networks:
+  lostnet:
