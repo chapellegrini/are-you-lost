@@ -3,8 +3,8 @@ class Database:
     """The user class, carry bandages"""
     # Initializer / Instance attributes
     cpt=0
-    def __init__(self, name):
-        self.users = {}
+    def __init__(self):
+        self.users = [] 
 
     def getUser(self, userNum):
         return users[usersNum]
@@ -20,11 +20,4 @@ class Database:
             if user.have(item):
                 res.append(user)
         return res
-
-    
-        
-
-
-
-
 
