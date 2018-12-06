@@ -6,16 +6,22 @@ class User:
         self.name = name
         self.lattitude = None
         self.longitude = None
-        self.inventory = []
+        self.inventory = {}
 
     def setCoordinate(self, lat, longi):
         self.lattitude = lat
         self.longitude = longi
 
-    def addItem(self, item):
-        self.inventory.append(item)
-
+    def publishItem(self, item, quantity=1):
+        self.inventory[item] = quantity
+        
     def have(self, item):
         if item in self.inventory:
             return true
         return false
+
+    def removeItem(self,item):
+        if item in self.inventory.keys():
+            self.inventory[item]
+            return True
+        return False
