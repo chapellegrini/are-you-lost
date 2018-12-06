@@ -3,18 +3,19 @@ class Database:
     """The user class, carry bandages"""
     # Initializer / Instance attributes
 
-    cpt = 0
     def __init__(self):
-        self.users = []
+        self.users = {}
 
-    def getUser(self, userNum):
-        return self.users[usersNum]
+    def getUser(self, uid):
+        return self.users[uid]
 
     def addUser(self, name):
-        user = User(Database.cpt,name)
-        Database.cpt += 1
-        self.users.append(user)
-        return Database.cpt - 1
+        randint=random.randint(0,1000000);
+        while randint in users.keys:
+            randint=random.randint(0,1000000);
+        user = User(randint,name)
+        self.users[randint]=user;
+        return randint
 
     def getUsersByItem(self, item):
         res = []
