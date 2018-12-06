@@ -8,7 +8,6 @@ from flask import request
 import json
 
 app = Flask(__name__)
-
 db = Database()
 
 @app.route('/')
@@ -43,7 +42,5 @@ def listUsers():
 
 @app.route('/register/<name>')
 def register(name):
-    return str(db.addUser(name))
-
-#@app.route('/additem/', methods = ['POST'])
-#def addItem(item, number):
+    session['id']= db.addUser(name)
+    return 'OK'
