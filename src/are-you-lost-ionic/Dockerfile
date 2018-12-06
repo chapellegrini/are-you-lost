@@ -4,5 +4,5 @@ RUN npm install -g ionic
 COPY package*.json ./
 RUN npm install
 COPY . ./
-RUN npm install @ionic/app-scripts@latest --save-dev
+#RUN npm install @ionic/app-scripts@latest --save-dev
 CMD ionic serve
