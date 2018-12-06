@@ -35,8 +35,8 @@ def userInfo(user):
 @app.route('/users/')
 def listUsers():
     usersDict = dict()
-    for user in db.users:
-        usersDict[user] = getUserInfo(userid)
+    for userid in range(len(db.users)):
+        usersDict[userid] = getUserInfo(userid)
     return json.dumps(usersDict, indent=2)
 
 @app.route('/register/<name>')
