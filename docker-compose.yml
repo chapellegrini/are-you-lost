@@ -1,0 +1,8 @@
+version: '2'
+services:
+  reverse_proxy:
+    build:
+      context: src/are-you-lost-ionic/
+      dockerfile: Dockerfile
+    ports:
+      - 8100:8100
