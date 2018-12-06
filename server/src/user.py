@@ -16,3 +16,8 @@ class User:
 
     def addItem(self, item):
         inventory.append(item)
+
+    def have(self, item):
+        if item in inventory:
+            return true
+        return false
