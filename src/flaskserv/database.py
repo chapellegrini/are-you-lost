@@ -23,3 +23,5 @@ class Database:
             if user.have(item):
                 res.append(user)
         return res
+
+
