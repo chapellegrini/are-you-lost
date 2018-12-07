@@ -49,7 +49,13 @@ def register():
     longitude = float(request.args['longitude'])
     session['id']= db.addUser(name, lattitude, longitude)
     return 'OK' 
-
+"""
+@app.route('/item')
+def getUsersWithItem():
+    item==request.args['item']
+    users= db.getUsersByItem(item)
+    for user in users:
+"""
 def getRequestArg(string, default):
     if string in request.args.keys():
         return request.args[string]

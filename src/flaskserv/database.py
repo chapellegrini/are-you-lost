@@ -20,7 +20,7 @@ class Database:
         self.users[rnd] = user;
         return rnd
 
-    def getUsersByItem(self, item):
+    def getUsersByItem(self, item, minimalQuantity=1, maxDistance=150):
         res = []
         for user in self.users:
             if user.have(item):
