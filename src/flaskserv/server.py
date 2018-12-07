@@ -43,6 +43,8 @@ def register():
 
 @app.route('/item')
 def getUsersWithItem():
+    dist=getRequestArg('dist',150)
+    quantity=getRequestArg('quantity')
     item==request.args['item']
     users= db.getUsersByItem(item)
     listJson=[]
@@ -64,5 +66,4 @@ def additem():
     return 'OK'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
-      app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)
