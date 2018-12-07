@@ -44,9 +44,9 @@ def register():
 @app.route('/item')
 def getUsersWithItem():
     dist=getRequestArg('dist',150)
-    quantity=getRequestArg('quantity')
+    quantity=getRequestArg('quantity',1)
     item==request.args['item']
-    users= db.getUsersByItem(item)
+    users= db.getUsersByItem(item, quantity, dist)
     listJson=[]
     for user in users:
         listJson.append(user.toJSON())
