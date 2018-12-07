@@ -22,6 +22,14 @@ def userInfo(userid):
     else:
         return 'Error: User does not exist'
 
+@app.route('/update', methods = ['PUT'] )
+def updateLocalisation():
+    latitude = float(request.form['lat'])
+    longitude = float(request.form['long'])
+    user = db.users[session['id']]
+    user.setLocation(latitude, longitude)
+
+
 @app.route('/users/')
 def listUsers():
     currentUser= db.getUser(session['id'])
@@ -58,10 +66,16 @@ def getRequestArg(string, default):
     return default
 
 @app.route('/additem/', methods = ['POST'])
-def additem():
+def addItem():
     item = request.form['item']
     nbitems = int(request.form['nb'])
     user = db.users[session['id']]
     user.publishItem(item, quantity=nbitems)
     return 'OK'
+
+@app.route('/delitem/', methods = ['DELETE'])
+def delItem():
+    item = request.form['item']
+    user = db.users[session['id']]
+    user.removeItem(item)
 

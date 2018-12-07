@@ -40,6 +40,10 @@ class User:
             'inventory': self.inventory
         }
 
+    def setLocalisation(self, lat, longi):
+        self.lattitude=lat
+        self.longitude=longi
+
 
 if __name__ == "__main__":
     user=User(3,'tamere',10,10);
