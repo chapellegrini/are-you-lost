@@ -1,5 +1,7 @@
 {
   "name": "are-you-lost",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

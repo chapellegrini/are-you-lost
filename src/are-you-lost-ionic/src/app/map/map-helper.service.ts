@@ -11,12 +11,27 @@ export class MapHelperService{
 
    initMap(){
      this.map = new leaflet.Map("map");
-     this.map.setView(new leaflet.LatLng(31.585692323629303, 35.19333585601518), 2);
+	 //this.map.setView(new leaflet.LatLng(31.585692323629303, 35.19333585601518), 2);
+	this.map.locate({ setView: true, zoom: 10 });
+	this.map.on('locationfound', this.onLocationFound.bind(this));
+	//this.map.on('locationerror', this.onLocationError.bind(this));
+	 
      leaflet.tileLayer(`https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png`, {
              maxZoom: 20,
              attribution: 'HOT',
           }).addTo(this.map);
    } 
+
+   public onLocationFound(e) {
+   		var radius = e.accuracy / 2;
+		leaflet.marker(e.latlng).addTo(this.map);
+		leaflet.circle(e.latlng, radius).addTo(this.map);
+   }
+
+   public onLocationError(e) {
+   		console.log(e);
+		alert(e.message || 'something is wrong');
+   }
    drawPoints(data){
       // points
       data.points.forEach(p=>this.addMarker(p.pos.lat, p.pos.lon));
