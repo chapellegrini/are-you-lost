@@ -15,7 +15,7 @@ class User:
 
     def publishItem(self, item, quantity=1):
         self.inventory[item] = quantity
-        
+
     def have(self, item):
         if item in self.inventory:
             return true
@@ -30,8 +30,18 @@ class User:
     def getDistance(self,user):
         return math.sqrt((self.lattitude-user.lattitude)* (self.lattitude-user.lattitude) +  (self.longitude-user.longitude)* (self.longitude-user.longitude))
 
+    def toJSON(self):
+        return {
+            'name': self.name,
+            'position': {
+                'lattitude': self.lattitude,
+                'longitude': self.longitude
+            },
+            'inventory': self.inventory
+        }
 
-if __name__ == "__main__": 
+
+if __name__ == "__main__":
     user=User(3,'tamere',10,10);
     user2=User(4,'tamere',10,20);
     print(user.getDistance(user2))

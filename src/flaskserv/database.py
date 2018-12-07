@@ -13,11 +13,11 @@ class Database:
 
 
     def addUser(self, name,lattitude,longitude):
-        rnd = random.randint(0,1000000);
+        rnd = random.randint(0,1000000)
         while rnd in self.users.keys():
-            rnd = randint(0,1000000);
+            rnd = randint(0,1000000)
         user = User(rnd, name,lattitude,longitude)
-        self.users[rnd] = user;
+        self.users[rnd] = user
         return rnd
 
     def getUsersByItem(self, item, minimalQuantity=1, maxDistance=150):
@@ -26,5 +26,3 @@ class Database:
             if user.have(item):
                 res.append(user)
         return res
-
-

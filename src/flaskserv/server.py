@@ -14,20 +14,10 @@ db = Database()
 def index():
     return 'Hello!'
 
-def getUserInfo(userid):
-    return {
-        'name': db.users[userid].name,
-        'position': {
-            'lattitude': db.users[userid].lattitude,
-            'longitude': db.users[userid].longitude
-        },
-        'inventory': db.users[userid].inventory
-    }
-
 @app.route('/user/<userid>')
 def userInfo(userid):
     if userid in db.users.keys():
-        userDict = getUserInfo(userid)
+        userDict = db.users[userid].toJSON()
         return json.dumps(userDict, indent=2)
     else:
         return 'Error: User does not exist'
@@ -37,9 +27,10 @@ def listUsers():
     currentUser= db.getUser(session['id'])
     maxDist = getRequestArg('dist',150)
     usersList = list()
-    for user in db.users.keys():
-        if currentUser.getDistance(db.getUser(user))<maxDist:
-            usersList.append(getUserInfo(user))
+    for userid in db.users:
+        user = db.getUser(userid)
+        if currentUser.getDistance(user)<maxDist:
+            usersList.append(user.toJSON())
     return json.dumps(usersList, indent=2)
 
 @app.route('/register/')
@@ -48,7 +39,7 @@ def register():
     lattitude = float(request.args['lattitude'])
     longitude = float(request.args['longitude'])
     session['id']= db.addUser(name, lattitude, longitude)
-    return 'OK' 
+    return 'OK'
 """
 @app.route('/item')
 def getUsersWithItem():
