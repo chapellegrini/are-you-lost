@@ -9,11 +9,11 @@ class Database:
     def getUser(self, uid):
         return self.users[uid]
 
-    def addUser(self, name):
+    def addUser(self, name, lattitude, longitude):
         randint=random.randint(0,1000000);
         while randint in users.keys:
             randint=random.randint(0,1000000);
-        user = User(randint,name)
+        user = User(randint,name,lattitude,longitude)
         self.users[randint]=user;
         return randint
 

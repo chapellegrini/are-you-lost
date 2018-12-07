@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-from flask import Flask
+from flask import Flask, request
 from user import User
 from database import Database
 
 import json
 
 app = Flask(__name__)
+app.secret_key = 'any random string'
 db = Database()
 
 @app.route('/')
@@ -33,14 +34,24 @@ def userInfo(user):
 
 @app.route('/users/')
 def listUsers():
+    currentUser= db.getUser(session['id'])
+    getRequestArg('dist',150)
     usersDict = dict()
     for user in db.users.keys():
-        usersDict[user] = getUserInfo(user)
+        if currentUser.getDistance(user)<maxDist:
+            usersDict[user] = getUserInfo(user)
     return json.dumps(usersDict, indent=2)
 
-@app.route('/register/<name>')
-def register(name):
-    session['id']= db.addUser(name)
+@app.route('/register/')
+def register():
+    name= request.args['name']
+
+    lattitude = request.args['lattitude']
+    longitude = request.args['longitude']
+    session['id']= db.addUser(name, lattitude, longitude)
     return 'OK' 
 
-
+def getRequestArg(string, default):
+    if string in request.args.keys():
+        return request.args[string]
+    return default
