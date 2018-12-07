@@ -36,9 +36,9 @@ def listUsers():
 @app.route('/register/')
 def register():
     name= getRequestArg('name','anonymous')
-    lattitude = float(request.args['lattitude'])
-    longitude = float(request.args['longitude'])
-    session['id']= db.addUser(name, lattitude, longitude)
+    latitude = float(request.args['lat'])
+    longitude = float(request.args['long'])
+    session['id']= db.addUser(name, latitude, longitude)
     return 'OK'
 
 @app.route('/item')
