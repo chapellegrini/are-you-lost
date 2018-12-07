@@ -1,3 +1,4 @@
+/*
 import {Injectable} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -79,4 +80,92 @@ export class GeocodesService {
         ]
       }).delay(1000);
    }
+}
+*/
+import {Injectable} from '@angular/core';
+
+
+
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/observable/of';
+
+import 'rxjs/add/operator/delay';
+
+
+
+
+
+@Injectable()
+
+export class GeocodesService {
+
+   getPositions():Observable<any>{
+
+      return Observable.of({
+
+        points:[
+
+            {
+
+                  "type": "person",
+
+                  "pos": {
+
+                      "lon": -95.3676974,
+
+                      "lat": 29.7589382
+
+                  },
+
+                  "data": {
+
+                      "pq": 2
+
+                  }
+
+            },
+
+        ],
+
+        lines:[
+
+          {
+
+            "type": "flight",
+
+            "test": "truc",
+
+            "pos": {
+
+                "src": {
+
+                      "lat": 50.1106529,
+
+                      "lon": 8.6820934
+
+                },
+
+                "dest": {
+
+                      "lat": 52.374436,
+
+                      "lon": 4.8979956033677
+
+                }
+
+            },
+
+            "data": {
+
+            }
+
+          },
+
+        ]
+
+      }).delay(1000);
+
+   }
+
 }
