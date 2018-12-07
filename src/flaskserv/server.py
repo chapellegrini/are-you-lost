@@ -40,13 +40,15 @@ def register():
     longitude = float(request.args['longitude'])
     session['id']= db.addUser(name, lattitude, longitude)
     return 'OK'
-"""
+
 @app.route('/item')
 def getUsersWithItem():
     item==request.args['item']
     users= db.getUsersByItem(item)
+    listJson=[]
     for user in users:
-"""
+        listJson.append(user.toJSON())
+    return listJson
 
 def getRequestArg(string, default):
     if string in request.args.keys():
@@ -60,3 +62,7 @@ def additem():
     user = db.users[session['id']]
     user.publishItem(item, quantity=nbitems)
     return 'OK'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
+      app.run(host='0.0.0.0', port=80)
