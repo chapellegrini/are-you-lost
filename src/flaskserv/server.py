@@ -56,8 +56,16 @@ def getUsersWithItem():
     users= db.getUsersByItem(item)
     for user in users:
 """
+
 def getRequestArg(string, default):
     if string in request.args.keys():
         return request.args[string]
     return default
 
+@app.route('/additem/', methods = ['POST'])
+def additem():
+    item = request.form['item']
+    nbitems = int(request.form['nb'])
+    user = db.users[session['id']]
+    user.publishItem(item, quantity=nbitems)
+    return 'OK'
