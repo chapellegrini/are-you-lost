@@ -13,7 +13,7 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HTTP } from '@ionic-native/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { HTTP } from '@ionic-native/http';
   ],
   imports: [
     BrowserModule,
+	HttpClientModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -38,7 +39,6 @@ import { HTTP } from '@ionic-native/http';
   	GeocodesService,
     StatusBar,
     SplashScreen,
-	HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

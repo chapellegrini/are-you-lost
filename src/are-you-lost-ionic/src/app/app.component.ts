@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HTTP } from '@ionic-native/http';
+import { HttpClient } from '@angular/common/http';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -18,7 +18,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public http: HTTP) {
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public http: HttpClient) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -27,6 +28,7 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Profile', component: ProfilePage }
     ];
+	this.http.get('http://51.75.91.252:5000');
 
   }
 
@@ -36,18 +38,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-	  //this.http.get('http://51.75.91.252:5000/register/?lat=10&long=20');
-	  this.http.get('http://51.75.91.252:5000', {}, {}).then(data => {
-	  console.log(data.status);
-	  console.log(data.data);
-	  console.log(data.headers);
-	  })
-	  .catch(error => {
-	  console.log(error.status);
-	  console.log(error.error);
-	  console.log(error.headers);
+	  this.http.get('http://51.75.91.252:5000/register/?lat=10&long=20&callback=?').pipe((err) => console.log(err));
 	  });
-    });
   }
 
   openPage(page) {
