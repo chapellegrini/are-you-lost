@@ -38,8 +38,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-	  this.http.get('http://51.75.91.252:5000/register/?lat=10&long=20&callback=?').pipe((err) => console.log(err));
-	  });
+      //this.http.get('http://51.75.91.252:5000/register/?lat=10&long=20&callback=?').pipe((err) => console.log(err));
+    });
   }
 
   openPage(page) {
